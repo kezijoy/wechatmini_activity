@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jiaoke.activitywechatapplet.dao.UserDao">
+	<!--<resultMap id="BaseResultMap" type="org.spring.springboot.domain.City">
+		<result column="id" property="id" />
+		<result column="province_id" property="provinceId" />
+		<result column="city_name" property="cityName" />
+		<result column="description" property="description" />
+	</resultMap>-->
+
+	<parameterMap id="User" type="com.jiaoke.activitywechatapplet.entity.User"/>
+
+	<select id="test" resultType="com.jiaoke.activitywechatapplet.entity.User" parameterType="java.lang.String">
+		select * from user where user_id =#{id}
+	</select>
+
+	<select id="queryByOpenId" resultType="com.jiaoke.activitywechatapplet.entity.User" parameterType="java.lang.String">
+		select * from user where open_id =#{id}
+	</select>
+
+	<select id="queryByUserId" resultType="com.jiaoke.activitywechatapplet.entity.User" parameterType="java.lang.String">
+		select * from user where user_id =#{id}
+	</select>
+
+	<insert id="insertUser" parameterType="com.jiaoke.activitywechatapplet.entity.User">
+
+		insert into user (nick_name, open_id, avatar_url, gender, phone, province, city, country,birthday
+		)
+		values (#{nickName,jdbcType=VARCHAR}, #{openId,jdbcType=VARCHAR}, #{avatarUrl,jdbcType=VARCHAR},
+		#{gender,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR},
+		#{city,jdbcType=TINYINT}, #{country,jdbcType=VARCHAR}, #{birthday,jdbcType=VARCHAR}
+		)
+	</insert>
+
+	<update id="updateUser" parameterType="com.jiaoke.activitywechatapplet.entity.User">
+
+		update user
+		<set>
+			<if test="nickName!= null">
+				nick_name = #{nickName,jdbcType=VARCHAR},
+			</if>
+			<if test="openId!= null">
+				open_id=#{openId,jdbcType=VARCHAR},
+			</if>
+			<if test="avatarUrl!= null">
+				avatar_url=#{avatarUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="gender!= null">
+				gender=#{gender,jdbcType=VARCHAR},
+			</if>
+			<if test="phone!= null">
+				phone=#{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="province!= null">
+				province=#{province,jdbcType=VARCHAR},
+			</if>
+			<if test="city!= null">
+				city=#{city,jdbcType=TINYINT},
+			</if>
+			<if test="country!= null">
+				country=#{country,jdbcType=VARCHAR},
+			</if>
+			<if test="birthday!= null">
+				birthday=#{birthday,jdbcType=VARCHAR}
+			</if>
+			where user_id = #{userId,jdbcType=INTEGER}
+		</set>
+
+	</update>
+
+	<update id="updateUserExample" parameterType="com.jiaoke.activitywechatapplet.entity.User">
+
+		update user
+		set nick_name = #{nickName,jdbcType=VARCHAR},
+		open_id=#{openId,jdbcType=VARCHAR},
+		avatar_url=#{avatarUrl,jdbcType=VARCHAR},
+		gender=#{gender,jdbcType=VARCHAR},
+		phone=#{phone,jdbcType=VARCHAR},
+		province=#{province,jdbcType=VARCHAR},
+		city=#{city,jdbcType=TINYINT},
+		country=#{country,jdbcType=VARCHAR},
+		birthday=#{birthday,jdbcType=VARCHAR}
+		where user_id = #{userId,jdbcType=INTEGER}
+	</update>
+
+</mapper>
