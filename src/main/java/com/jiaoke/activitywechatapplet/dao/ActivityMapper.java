@@ -39,4 +39,9 @@ public interface ActivityMapper {
     List<Activity> selectByRegistration(@Param("userId") Integer userId);
 
     int updateStatusByActivityId(@Param("activityId") Integer activityId,@Param("activityStatus") String activityStatus);
+
+    int updateStatusForRegistration();
+    int updateStatusForPreparing();
+    int updateStatusForProcessing();
+    int updateStatusForEnd();
 }

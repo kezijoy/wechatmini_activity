@@ -1,6 +1,5 @@
 package com.jiaoke.activitywechatapplet;
 
-import com.jiaoke.activitywechatapplet.service.ActivityService;
 import com.jiaoke.activitywechatapplet.service.impl.ActivityServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;

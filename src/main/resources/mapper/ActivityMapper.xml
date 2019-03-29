@@ -384,5 +384,49 @@
       activity_status = #{activityStatus,jdbcType=VARCHAR}
     where activity_id = #{activityId,jdbcType=INTEGER}
   </update>
+  
+  <update id="updateStatusForRegistration">
+    UPDATE activity
+    SET activity_status = "报名中"
+    WHERE activity_id IN (
+    SELECT a.activity_id FROM(
+    SELECT activity_id
+    FROM activity
+    WHERE UNIX_TIMESTAMP(registration_start_time) &lt; UNIX_TIMESTAMP(NOW()) AND UNIX_TIMESTAMP(registration_end_time) &gt; UNIX_TIMESTAMP(NOW()))a
+    )
+  </update>
+
+  <update id="updateStatusForPreparing">
+    UPDATE activity
+    SET activity_status = "准备中"
+    WHERE activity_id IN (
+    SELECT a.activity_id FROM(
+    SELECT activity_id
+    FROM activity
+    WHERE UNIX_TIMESTAMP(registration_end_time) &lt; UNIX_TIMESTAMP(NOW()) AND UNIX_TIMESTAMP(activity_start_time) &gt; UNIX_TIMESTAMP(NOW()))a
+    )
+  </update>
+
+  <update id="updateStatusForProcessing">
+    UPDATE activity
+    SET activity_status = "进行中"
+    WHERE activity_id IN (
+    SELECT a.activity_id FROM(
+    SELECT activity_id
+    FROM activity
+    WHERE UNIX_TIMESTAMP(activity_start_time) &lt; UNIX_TIMESTAMP(NOW()) AND UNIX_TIMESTAMP(activity_end_time) &gt; UNIX_TIMESTAMP(NOW()))a
+    )
+  </update>
+
+  <update id="updateStatusForEnd">
+    UPDATE activity
+    SET activity_status = "完成"
+    WHERE activity_id IN (
+    SELECT a.activity_id FROM(
+    SELECT activity_id
+    FROM activity
+    WHERE UNIX_TIMESTAMP(activity_end_time) &lt; UNIX_TIMESTAMP(NOW()))a
+    )
+  </update>
 
 </mapper>

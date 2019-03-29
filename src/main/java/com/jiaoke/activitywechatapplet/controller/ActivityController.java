@@ -28,7 +28,7 @@ import java.util.Map;
 @RequestMapping("/wx/activity")
 public class ActivityController {
 
-    private Logger logger = LoggerFactory.getLogger(UserController.class);
+    private Logger logger = LoggerFactory.getLogger(ActivityController.class);
 
     @Autowired
     private ActivityService activityService;

@@ -97,10 +97,14 @@
 		<table tableName="activity_video" domainObjectName="ActivityVideo">
 			<property name="useActualColumnNames" value="false"/>
 			<generatedKey column="video_id" sqlStatement="Mysql" identity="true" />
-		</table>-->
+		</table>
 		<table tableName="activity_sign" domainObjectName="ActivitySign">
 			<property name="useActualColumnNames" value="false"/>
 			<generatedKey column="id" sqlStatement="Mysql" identity="true" />
+		</table>-->
+		<table tableName="activity_image_ad" domainObjectName="ActivityImageAd">
+			<property name="useActualColumnNames" value="false"/>
+			<generatedKey column="image_id" sqlStatement="Mysql" identity="true" />
 		</table>
 	</context>
 </generatorConfiguration>
